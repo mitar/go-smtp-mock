@@ -177,6 +177,8 @@ func (server *Server) stop() {
 
 // Creates and assigns new message to server.messages
 func (server *Server) newMessage() *Message {
+	server.Lock()
+	defer server.Unlock()
 	newMessage := new(Message)
 	server.messages.append(newMessage)
 	return newMessage
